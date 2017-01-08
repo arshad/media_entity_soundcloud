@@ -18,7 +18,7 @@ function media_entity_soundcloud_theme($existing, $type, $theme, $path) {
         'type' => NULL,
         'options' => [],
       ],
-      'file' => 'media_soundcloud_entity.theme.inc',
+      'file' => 'media_entity_soundcloud.theme.inc',
     ]
   ];
 }

@@ -29,10 +29,7 @@ class SoundcloudEmbedFormatter extends FormatterBase {
         'type' => 'visual',
         'width' => '100%',
         'height' => '450px',
-        'options' => [
-          'show_comments',
-          'show_user'
-        ],
+        'options' => [],
       ) + parent::defaultSettings();
   }
 
@@ -85,7 +82,7 @@ class SoundcloudEmbedFormatter extends FormatterBase {
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    return [
+    $summary = [
       $this->t('Type: @type', [
         '@type' => $this->getSetting('type'),
       ]),
@@ -95,11 +92,16 @@ class SoundcloudEmbedFormatter extends FormatterBase {
       $this->t('Height: @height', [
         '@height' => $this->getSetting('height'),
       ]),
-
-      $this->t('Options: @options', [
-        '@options' => implode(', ', array_intersect_key($this->getEmbedOptions(), array_flip($this->getSetting('options')))),
-      ]),
     ];
+
+    $options = $this->getSetting('options');
+    if (count($options)) {
+      $summary[] = $this->t('Options: @options', [
+        '@options' => implode(', ', array_intersect_key($this->getEmbedOptions(), array_flip($this->getSetting('options')))),
+      ]);
+    }
+
+    return $summary;
   }
 
   /**

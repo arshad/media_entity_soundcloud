@@ -32,17 +32,17 @@ field.formatter.settings.soundcloud_embed:
       label: 'Options'
       mapping:
         auto_play:
-          type: integer
+          type: string
           label: 'Autoplay'
         hide_related:
-          type: integer
+          type: string
           label: 'Hide related'
         show_comments:
-          type: integer
+          type: string
           label: 'Show comments'
         show_user:
-          type: integer
+          type: string
           label: 'Show user'
         show_reposts:
-          type: integer
+          type: string
           label: 'Show reposts'

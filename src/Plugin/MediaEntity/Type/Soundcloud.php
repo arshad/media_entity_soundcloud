@@ -183,8 +183,11 @@ class Soundcloud extends MediaTypeBase {
     if (isset($this->configuration['source_url_field'])) {
       $source_url_field = $this->configuration['source_url_field'];
       if ($media->hasField($source_url_field)) {
-        $property_name = $media->{$source_url_field}->first()->mainPropertyName();
-        return $media->{$source_url_field}->{$property_name};
+        if (!empty($media->{$source_url_field}->first())) {
+          $property_name = $media->{$source_url_field}->first()
+            ->mainPropertyName();
+          return $media->{$source_url_field}->{$property_name};
+        }
       }
     }
     return FALSE;

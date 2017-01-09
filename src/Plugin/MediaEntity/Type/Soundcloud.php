@@ -2,10 +2,12 @@
 
 namespace Drupal\media_entity_soundcloud\Plugin\MediaEntity\Type;
 
+use Drupal\Core\Annotation\Translation;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\media_entity\Annotation\MediaType;
 use Drupal\media_entity\MediaInterface;
 use Drupal\media_entity\MediaTypeBase;
 use GuzzleHttp\ClientInterface;
@@ -21,6 +23,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class Soundcloud extends MediaTypeBase {
+
+  /**
+   * @var array
+   */
+  protected $souncloud;
 
   /**
    * @var \Drupal\Core\Config\ConfigFactoryInterface
@@ -203,12 +210,14 @@ class Soundcloud extends MediaTypeBase {
    *  An array of oembed data.
    */
   protected function oEmbed($url) {
-    $soundcloud = &drupal_static(__FUNCTION__);
+    $this->soundcloud = &drupal_static(__FUNCTION__);
 
-    if (!isset($soundcloud)) {
+    if (!isset($this->soundcloud)) {
       $url = 'https://soundcloud.com/oembed?format=json&url=' . $url;
       $response = $this->httpClient->get($url);
-      return json_decode((string) $response->getBody(), TRUE);
+      $this->soundcloud = json_decode((string) $response->getBody(), TRUE);
     }
+
+    return $this->soundcloud;
   }
 }

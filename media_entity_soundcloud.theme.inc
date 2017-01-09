@@ -19,7 +19,7 @@ function template_preprocess_media_soundcloud_embed(&$variables) {
   $query = [];
 
   // Add visual.
-  $query['visual'] = (bool) ($variables['type'] == 'visual');
+  $query['visual'] = ($variables['type'] == 'visual');
 
   // Add options.
   foreach ($variables['options'] as $option => $value) {

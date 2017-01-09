@@ -167,7 +167,7 @@ class Soundcloud extends MediaTypeBase {
    * {@inheritdoc}
    */
   public function getDefaultThumbnail() {
-    return $this->config->get('icon_base') . '/default.png';
+    return $this->config->get('icon_base') . '/soundcloud.png';
   }
 
   /**

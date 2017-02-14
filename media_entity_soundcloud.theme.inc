@@ -23,7 +23,7 @@ function template_preprocess_media_soundcloud_embed(&$variables) {
 
   // Add options.
   foreach ($variables['options'] as $option => $value) {
-    $query[$option] = ($value !== 0) ? 'true' : 'false';
+    $query[$option] = ($value != 0) ? 'true' : 'false';
   }
 
   $url = Url::fromUri($uri, ['query' => $query]);

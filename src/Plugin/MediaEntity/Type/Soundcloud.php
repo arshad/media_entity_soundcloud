@@ -210,7 +210,7 @@ class Soundcloud extends MediaTypeBase {
    *  An array of oembed data.
    */
   protected function oEmbed($url) {
-    $this->soundcloud = &drupal_static(__FUNCTION__);
+    $this->soundcloud = &drupal_static(__FUNCTION__ . hash('md5',$url));
 
     if (!isset($this->soundcloud)) {
       $url = 'https://soundcloud.com/oembed?format=json&url=' . $url;
